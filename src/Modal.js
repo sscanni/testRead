@@ -2,13 +2,11 @@ import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
 
-class Modal extends React.Component {
+const Modal = (props) => {
 
-    render() {
-        if (!this.props.modalOpen) {
+        if (!props.modalOpen) {
             return null;
         }
-
         // The gray background
         const backdropStyle = {
             position: 'fixed',
@@ -38,27 +36,27 @@ class Modal extends React.Component {
                         <div className="row">
                             <div id="modal" className="col-10 mx-auto col-md-8 col-lg-6 text-center text-capitalize">
                                 <h5>Book Details</h5>
-                                <p>{this.props.modalBook.title}</p>
-                                {(("imageLinks" in this.props.modalBook)
+                                <p>{props.modalBook.title}</p>
+                                {(("imageLinks" in props.modalBook)
                                     ?
-                                    <div className="book-cover bookmodal" style={{ width: 128, height: 192, backgroundImage: `url(${this.props.modalBook.imageLinks.thumbnail})` }}></div>
+                                    <div className="book-cover bookmodal" style={{ width: 128, height: 192, backgroundImage: `url(${props.modalBook.imageLinks.thumbnail})` }}></div>
                                     :
                                     <div className="book-cover book-cover-notfound bookmodal" style={{ width: 128, height: 192 }}>Book Cover Not Available</div>
                                 )}
-                                 {(("authors" in this.props.modalBook) && this.props.modalBook.authors.map((author, index) => <p key={index} className="book-authors">{author}</p>))}
-                                 <p>Pages: {this.props.modalBook.pageCount}</p>
-                                 <p>Published: {this.props.modalBook.publisher}  {this.props.modalBook.publishedDate}</p>
+                                 {(("authors" in props.modalBook) && props.modalBook.authors.map((author, index) => <p key={index} className="book-authors">{author}</p>))}
+                                 <p>Pages: {props.modalBook.pageCount}</p>
+                                 <p>Published: {props.modalBook.publisher}  {props.modalBook.publishedDate}</p>
                                  <p>Description</p>
-                                 <textarea rows="8" cols="60" readOnly value={this.props.modalBook.description} />
-                                 <br></br><button onClick={this.props.closeModal}>Close</button>
+                                 <textarea rows="8" cols="60" readOnly value={props.modalBook.description} />
+                                 <br></br><button onClick={props.closeModal}>Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
-    }
-};
+    };
+// };
 Modal.propTypes = {
     modalOpen: PropTypes.bool.isRequired,
     closeModal: PropTypes.func.isRequired,
