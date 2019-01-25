@@ -30,15 +30,17 @@ class BooksApp extends React.Component {
         none: "none"
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         window.onpopstate  = (e) => {
             this.closeModal()
         }
         this.targetElement = document.querySelector('modal');
-        BooksAPI.getAll()
-            .then((savedBooks) => {
-                this.assignBookShelf(savedBooks)
-            })
+        const savedBooks = await BooksAPI.getAll()
+        this.assignBookShelf(savedBooks)
+        // BooksAPI.getAll()
+        //     .then((savedBooks) => {
+        //         this.assignBookShelf(savedBooks)
+        //    })
     }
 
     assignBookShelf(savedBooks) {
