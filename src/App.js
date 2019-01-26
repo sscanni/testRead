@@ -220,7 +220,7 @@ class BooksApp extends React.Component {
                                     value={this.state.bookSearchText}
                                     onChange={this.bookSearchChange} />
                                     :
-                                    <input type="text" 
+                                    <input autoFocus type="text" 
                                     placeholder="Search by title or author"
                                     value={this.state.bookSearchText}
                                     onChange={this.bookSearchChange} />
